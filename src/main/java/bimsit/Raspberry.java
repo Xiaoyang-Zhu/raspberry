@@ -9,10 +9,14 @@ import org.bouncycastle.util.Arrays;
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.security.Security;
+import java.net.URL;
+import java.net.URLConnection;
 
 
 public class Raspberry
@@ -87,5 +91,28 @@ public class Raspberry
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        long requeststarter = 0;
+        long requestender = 0;
+        requeststarter = System.nanoTime();
+
+        try{
+            URL url = new URL("https://api.blockcypher.com/v1/btc/test3/txs/473986c4a3e28166f7751ca9d5a90f88b50a9b8055e58824bc3a61274e096b16?limit=50&includeHex=true");
+
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
+                for (String line; (line = reader.readLine()) != null;) {
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        requestender = System.nanoTime();
+
+        System.out.println(requestender-requeststarter);
+
+
     }
 }
