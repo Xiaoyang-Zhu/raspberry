@@ -18,7 +18,7 @@ import java.security.Security;
 public class Raspberry
 {
     // 50000 for mac
-    final static int loops = 1;
+    final static int loops = 10;
     public static void raspberryOverhead()
     {
         Security.addProvider(new BouncyCastleProvider());
@@ -32,7 +32,7 @@ public class Raspberry
             long digeststarter = 0;
             long digestender = 0;
             byte[] digest = null;
-            for(int i = 0; i < 100; i ++) {
+            for(int i = 0; i < 1000; i ++) {
                 digeststarter = System.nanoTime();
                 md.update(teststr);
                 digest = md.digest();
@@ -43,7 +43,7 @@ public class Raspberry
             System.out.println(ByteUtil.toHex(digest));
 
 
-            System.out.println(digestAccumulate/100);
+            System.out.println(digestAccumulate/1000);
 
             byte[] rndseed = SecureRandom.getSeed(32);
             Mac mac = Mac.getInstance ("HmacSHA512", "BC");
