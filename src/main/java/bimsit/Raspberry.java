@@ -23,7 +23,7 @@ public class Raspberry
 {
     // 50000 for mac
     final static int loops = 1;
-    final static int hashloops = 100;
+    final static int hashloops = 1;
     public static void raspberryOverhead()
     {
         Security.addProvider(new BouncyCastleProvider());
@@ -101,8 +101,7 @@ public class Raspberry
             URL url = new URL("https://api.blockcypher.com/v1/btc/test3/txs/473986c4a3e28166f7751ca9d5a90f88b50a9b8055e58824bc3a61274e096b16?limit=50&includeHex=true");
 
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
-                for (String line; (line = reader.readLine()) != null;) {
-                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
